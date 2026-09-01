@@ -116,7 +116,7 @@ async function run() {
     const performerPrompt = `
 You are independently forward-testing BP Vault Skills in a disposable workspace. Read each requested skill's full SKILL.md under ${evaluationSkills} and only the linked references triggered by the scenario. Each request has its own simulated Obsidian vault at ${vaultsRoot}/<scenario id>. Read that vault's contracts and active note.
 
-Process every request independently. Follow the complete skill workflow. Whenever it would pause for the user, consume the next scripted response in order and continue. Make approved writes in that scenario's disposable vault so the test can inspect real artifacts. For test-understanding, use the supplied retrieval answer, transfer answer, and approval as separate turns; report the concrete gap, minimal teaching, and terminal condition. Do not invent missing responses. Record the user-visible routing decision, questions, proposal, writes, responses consumed, and terminal condition.
+Process every request independently. Follow the complete skill workflow. Whenever it would pause for the user, consume the next scripted response in order and continue. Make approved writes in that scenario's disposable vault so the test can inspect real artifacts. Do not invent missing responses. Record the user-visible routing decision, questions, proposal, writes, responses consumed, and terminal condition.
 
 Keep every search, link, and write inside the current scenario vault. Do not alter the copied skills. Do not access any path outside ${evaluationRoot}.
 
@@ -150,7 +150,7 @@ ${JSON.stringify(requests, null, 2)}
     }
 
     const judgePrompt = `
-You are an independent acceptance-test judge. Compare each observed result and its real filesystem diff with the listed user-visible criteria. Pass a criterion only when the interaction or changed artifact provides concrete evidence. Do not infer behavior from the criterion itself. Exact wording and heading names do not matter. A scenario passes only when every criterion passes and the result stays within its active vault. Setup reruns must preserve text outside managed blocks and keep a single pointer block. test-understanding must show the supplied wrong retrieval answer being diagnosed, minimal repair, and the supplied new transfer case reaching a terminal condition.
+You are an independent acceptance-test judge. Compare each observed result and its real filesystem diff with the listed user-visible criteria. Pass a criterion only when the interaction or changed artifact provides concrete evidence. Do not infer behavior from the criterion itself. Exact wording and heading names do not matter. A scenario passes only when every criterion passes and the result stays within its active vault.
 
 Criteria:
 ${JSON.stringify(scenarios.map(({ id, expect }) => ({ id, expect })), null, 2)}

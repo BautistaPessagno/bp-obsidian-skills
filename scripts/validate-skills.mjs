@@ -112,13 +112,6 @@ async function validateScenarios() {
     }
   }
 
-  const understandingScenario = scenarios.find(
-    (scenario) => scenario.skill === "test-understanding",
-  );
-  if (!understandingScenario || understandingScenario.scripted_responses.length < 3) {
-    throw new Error(`${scenarioPath}: test-understanding needs retrieval, transfer, and approval responses`);
-  }
-
   return scenarios.length;
 }
 

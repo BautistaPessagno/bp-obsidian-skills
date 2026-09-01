@@ -1,0 +1,6 @@
+interface:
+  display_name: "Setup BP Vault"
+  short_description: "Map one vault before other BP skills edit it"
+  default_prompt: "Use $setup-bp-vault to inspect this vault and draft its local contracts."
+policy:
+  allow_implicit_invocation: false

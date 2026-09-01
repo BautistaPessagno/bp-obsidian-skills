@@ -27,8 +27,16 @@ test("only setup-bp-vault and ask-bp require explicit invocation", async () => {
     );
     assert.equal(fields.get("name"), skillName);
     assert.ok(fields.get("description"), `${skillName} needs a description`);
+    assert.equal(fields.has("disable-model-invocation"), false, skillName);
 
-    const explicitOnly = fields.get("disable-model-invocation") === "true";
+    const policyPath = repoPath("skills", skillName, "agents", "openai.yaml");
+    let explicitOnly = false;
+    try {
+      const policy = await fs.readFile(policyPath, "utf8");
+      explicitOnly = /allow_implicit_invocation:\s*false/.test(policy);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
     assert.equal(explicitOnly, explicitOnlySkills.has(skillName), skillName);
   }
 });

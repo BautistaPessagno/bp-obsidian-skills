@@ -1,7 +1,6 @@
 ---
 name: setup-bp-vault
 description: "Discover an Obsidian vault and create its local BP Vault Skills contracts. Run once per vault and again when its conventions change."
-disable-model-invocation: true
 ---
 
 # Setup BP Vault

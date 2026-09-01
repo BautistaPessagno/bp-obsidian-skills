@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "typecheck": "node --check scripts/install.mjs && node --check scripts/validate-skills.mjs && node --check tests/install.test.mjs && node --check tests/skills.test.mjs",
+    "typecheck": "node --check lib/skill-manifest.mjs && node --check scripts/install.mjs && node --check scripts/run-acceptance.mjs && node --check scripts/validate-skills.mjs && node --check tests/install.test.mjs && node --check tests/skills.test.mjs",
     "validate": "node scripts/validate-skills.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test:unit": "node --test tests/*.test.mjs",
+    "test:acceptance": "node scripts/run-acceptance.mjs",
+    "test": "npm run test:unit",
+    "test:full": "npm run typecheck && npm run validate && npm run test:unit && npm run test:acceptance"
   }
 }

@@ -1,46 +1,28 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
+
+import { explicitOnlySkills, skillNames } from "../lib/skill-manifest.mjs";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
 const skillsRoot = path.join(repositoryRoot, "skills");
-const skillNames = [
-  "setup-bp-vault",
-  "ask-bp",
-  "develop-note",
-  "test-understanding",
-  "apply-learning",
-  "review-progress",
-];
-const explicitOnlySkills = new Set(["setup-bp-vault", "ask-bp"]);
-
-function frontmatter(source, filePath) {
-  const match = source.match(/^---\n([\s\S]*?)\n---\n/);
-  if (!match) throw new Error(`${filePath}: missing YAML frontmatter`);
-
-  const fields = new Map();
-  for (const line of match[1].split("\n")) {
-    const separator = line.indexOf(":");
-    if (separator === -1) continue;
-    fields.set(
-      line.slice(0, separator).trim(),
-      line.slice(separator + 1).trim().replace(/^"|"$/g, ""),
-    );
-  }
-  return fields;
-}
-
 async function validateSkill(skillName) {
-  const skillPath = path.join(skillsRoot, skillName, "SKILL.md");
+  const skillDirectory = path.join(skillsRoot, skillName);
+  const skillPath = path.join(skillDirectory, "SKILL.md");
   const source = await fs.readFile(skillPath, "utf8");
-  const fields = frontmatter(source, skillPath);
+  if (/^disable-model-invocation:/m.test(source)) {
+    throw new Error(`${skillPath}: unsupported invocation policy field`);
+  }
 
-  if (fields.get("name") !== skillName) {
-    throw new Error(`${skillPath}: name must match its directory`);
+  const policyPath = path.join(skillDirectory, "agents", "openai.yaml");
+  let isExplicit = false;
+  try {
+    const policy = await fs.readFile(policyPath, "utf8");
+    isExplicit = /allow_implicit_invocation:\s*false/.test(policy);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
   }
-  if (!fields.get("description")) {
-    throw new Error(`${skillPath}: description is required`);
-  }
-  const isExplicit = fields.get("disable-model-invocation") === "true";
   if (isExplicit !== explicitOnlySkills.has(skillName)) {
     throw new Error(`${skillPath}: invocation policy does not match the spec`);
   }
@@ -51,6 +33,24 @@ async function validateSkill(skillName) {
   const localLinks = source.matchAll(/\[[^\]]+\]\((\.\/[^)]+)\)/g);
   for (const [, relativePath] of localLinks) {
     await fs.access(path.resolve(path.dirname(skillPath), relativePath));
+  }
+
+  const codexHome = process.env.CODEX_HOME
+    ? path.resolve(process.env.CODEX_HOME)
+    : path.join(os.homedir(), ".codex");
+  const systemValidator = path.join(
+    codexHome,
+    "skills",
+    ".system",
+    "skill-creator",
+    "scripts",
+    "quick_validate.py",
+  );
+  const result = spawnSync("python3", [systemValidator, skillDirectory], {
+    encoding: "utf8",
+  });
+  if (result.status !== 0) {
+    throw new Error(`${skillName}: ${result.stderr || result.stdout}`.trim());
   }
 }
 
@@ -88,6 +88,17 @@ async function validateScenarios() {
       if (!scenarios.some((scenario) => scenario.skill === skillName && scenario.vault === vault)) {
         throw new Error(`${scenarioPath}: ${skillName} needs a ${vault} scenario`);
       }
+    }
+  }
+
+  const developModes = new Set(
+    scenarios
+      .filter((scenario) => scenario.skill === "develop-note")
+      .map((scenario) => scenario.mode),
+  );
+  for (const mode of ["thought", "decision", "reference", "learning"]) {
+    if (!developModes.has(mode)) {
+      throw new Error(`${scenarioPath}: develop-note needs a ${mode} scenario`);
     }
   }
 

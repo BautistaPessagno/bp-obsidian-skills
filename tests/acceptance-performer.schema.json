@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["results"],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "observed_outcome", "decisions", "questions", "proposal", "artifacts", "stopped_before_write", "vault_boundary"],
+        "properties": {
+          "id": { "type": "string" },
+          "observed_outcome": { "type": "string" },
+          "decisions": { "type": "array", "items": { "type": "string" } },
+          "questions": { "type": "array", "items": { "type": "string" } },
+          "proposal": { "type": "array", "items": { "type": "string" } },
+          "artifacts": { "type": "array", "items": { "type": "string" } },
+          "stopped_before_write": { "type": "boolean" },
+          "vault_boundary": { "type": "string", "enum": ["active-vault", "would-leave-vault", "unknown"] }
+        }
+      }
+    }
+  }
+}

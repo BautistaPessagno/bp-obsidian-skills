@@ -1,7 +1,6 @@
 ---
 name: ask-bp
 description: "Recommend the BP Vault skill or flow that fits a documentation, learning, application, or review request."
-disable-model-invocation: true
 ---
 
 # Ask BP

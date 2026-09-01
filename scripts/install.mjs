@@ -2,14 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
-const skillNames = [
-  "setup-bp-vault",
-  "ask-bp",
-  "develop-note",
-  "test-understanding",
-  "apply-learning",
-  "review-progress",
-];
+import { skillNames } from "../lib/skill-manifest.mjs";
 
 function targetFromArguments(argumentsList) {
   const targetIndex = argumentsList.indexOf("--target");
@@ -26,8 +19,8 @@ function targetFromArguments(argumentsList) {
 
 async function existingDestination(destination, source) {
   try {
-    const information = await fs.lstat(destination);
-    if (!information.isSymbolicLink()) return "collision";
+    const destinationStats = await fs.lstat(destination);
+    if (!destinationStats.isSymbolicLink()) return "collision";
     return (await fs.realpath(destination)) === source ? "installed" : "collision";
   } catch (error) {
     if (error.code === "ENOENT") return "missing";

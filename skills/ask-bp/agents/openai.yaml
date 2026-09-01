@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ask BP"
+  short_description: "Choose the BP Vault skill for this request"
+  default_prompt: "Use $ask-bp to recommend the right BP Vault route for my request."
+policy:
+  allow_implicit_invocation: false

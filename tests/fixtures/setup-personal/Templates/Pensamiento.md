@@ -1,0 +1,7 @@
+---
+kind: thought
+---
+
+# {{title}}
+
+## Contexto

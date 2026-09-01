@@ -3,6 +3,8 @@
     "id": "setup-personal-preserves-taxonomy",
     "skill": "setup-bp-vault",
     "vault": "personal",
+    "fixture": "setup-personal",
+    "scripted_responses": ["Usá AGENTS.md como guía.", "Confirmo los mapeos propuestos y apruebo los dos contratos y el bloque de punteros."],
     "request": "Configura BP Vault Skills sin cambiar mis carpetas ni propiedades.",
     "expect": ["present findings before writing", "map the common vocabulary to local objects", "request approval", "write two visible contracts"]
   },
@@ -10,6 +12,8 @@
     "id": "setup-academic-updates-owned-block",
     "skill": "setup-bp-vault",
     "vault": "academic",
+    "fixture": "setup-academic",
+    "scripted_responses": ["La nueva carpeta Materias/Física es una materia académica.", "Apruebo la actualización y quiero conservar todo el texto fuera de los bloques administrados."],
     "request": "Volvé a ejecutar el setup después de que agregué una materia.",
     "expect": ["preserve existing conventions", "update managed material without duplicate pointers", "preserve unowned edits"]
   },
@@ -18,6 +22,7 @@
     "skill": "ask-bp",
     "vault": "personal",
     "active_note": "Inbox/reflection.md",
+    "scripted_responses": [],
     "request": "Quiero ordenar y desarrollar este pensamiento, no estudiarlo.",
     "expect": ["recommend develop-note", "give one-line reason"]
   },
@@ -26,6 +31,7 @@
     "skill": "ask-bp",
     "vault": "academic",
     "active_note": "Clases/algoritmos.md",
+    "scripted_responses": [],
     "request": "Quiero comprobar si entiendo esta clase.",
     "expect": ["recommend test-understanding", "give one-line reason"]
   },
@@ -34,6 +40,7 @@
     "skill": "ask-bp",
     "vault": "personal",
     "active_note": "Ideas/feedback-loops.md",
+    "scripted_responses": [],
     "request": "Quiero llevar esta idea a una acción concreta.",
     "expect": ["recommend apply-learning", "give one-line reason"]
   },
@@ -42,6 +49,7 @@
     "skill": "ask-bp",
     "vault": "personal",
     "active_note": "Reviews/2026-08.md",
+    "scripted_responses": [],
     "request": "Revisemos el progreso de este mes.",
     "expect": ["recommend review-progress", "give one-line reason"]
   },
@@ -51,6 +59,7 @@
     "mode": "thought",
     "vault": "personal",
     "active_note": "Inbox/reflection.md",
+    "scripted_responses": ["Apruebo el borrador y los enlaces locales propuestos."],
     "request": "Desarrollá esta reflexión sin convertirla en una lección.",
     "expect": ["preserve context and open questions", "separate experience from interpretation", "draft before substantial edits", "avoid learned state"]
   },
@@ -60,6 +69,7 @@
     "mode": "decision",
     "vault": "personal",
     "active_note": "Inbox/decision.md",
+    "scripted_responses": ["Apruebo el borrador propuesto."],
     "request": "Desarrollá esta decisión y conservá por qué la tomé y qué consecuencias espero.",
     "expect": ["preserve choice context alternatives reasons and consequences", "separate decision-time evidence from hindsight", "draft before substantial edits"]
   },
@@ -69,6 +79,7 @@
     "mode": "reference",
     "vault": "academic",
     "active_note": "Clases/reference.md",
+    "scripted_responses": ["Apruebo el borrador propuesto."],
     "request": "Desarrollá esta referencia sin confundir lo que dice la fuente con mi interpretación.",
     "expect": ["preserve provenance and scope", "separate source claims from interpretation", "show source conflicts"]
   },
@@ -78,6 +89,7 @@
     "mode": "learning",
     "vault": "academic",
     "active_note": "Clases/algoritmos.md",
+    "scripted_responses": ["Apruebo el borrador y el estado desarrollada; no agregues una propiedad learned."],
     "request": "Desarrollá esta nota de clase para poder aprender el tema.",
     "expect": ["prioritize course sources", "use the learner's own words", "add meaningful local connections", "avoid universal properties"]
   },
@@ -86,6 +98,7 @@
     "skill": "test-understanding",
     "vault": "academic",
     "active_note": "Clases/algoritmos.md",
+    "scripted_responses": ["Mantenimiento significa demostrar que el ciclo termina.", "En un ciclo que suma los primeros n números, si antes de iterar suma contiene los primeros i términos, después de agregar i conserva la proposición para i+1. La condición i=n explica la terminación por separado.", "Apruebo registrar solo el error inicial y la conexión nueva en la nota."],
     "request": "Tomame este tema y corregí mis huecos.",
     "expect": ["ask for retrieval before revealing", "diagnose one concrete gap", "teach only what repairs the gap", "finish with a new transfer case"]
   },
@@ -94,6 +107,7 @@
     "skill": "apply-learning",
     "vault": "personal",
     "active_note": "Ideas/feedback-loops.md",
+    "scripted_responses": ["Apruebo la aplicación pequeña y su destino propuesto."],
     "request": "Ayudame a aplicar esta idea esta semana.",
     "expect": ["propose one small application", "include context action success criterion and review moment", "request approval before creating or moving notes"]
   },
@@ -102,6 +116,7 @@
     "skill": "apply-learning",
     "vault": "academic",
     "active_note": "Clases/algoritmos.md",
+    "scripted_responses": ["Apruebo el ejercicio y el registro de evidencia propuestos."],
     "request": "Convertí lo aprendido en una práctica verificable.",
     "expect": ["choose an exercise or unaided explanation from the local profile", "define observable success", "record evidence locally"]
   },
@@ -110,6 +125,7 @@
     "skill": "review-progress",
     "vault": "personal",
     "active_note": "Reviews/2026-08.md",
+    "scripted_responses": ["Apruebo actualizar la revisión mensual con ese análisis."],
     "request": "Hacé mi revisión mensual.",
     "expect": ["load the local time-horizon mode", "evaluate retrieval transfer and application", "treat counts and time as context"]
   },
@@ -118,6 +134,7 @@
     "skill": "review-progress",
     "vault": "academic",
     "active_note": "Evaluaciones/parcial.md",
+    "scripted_responses": ["Apruebo el análisis de preparación y el próximo ejercicio diagnóstico."],
     "request": "Revisá si estoy listo para el parcial.",
     "expect": ["load the practice or evaluation mode", "use academic evidence", "surface gaps and next checks"]
   }

@@ -9,7 +9,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "observed_outcome", "decisions", "questions", "proposal", "artifacts", "stopped_before_write", "vault_boundary"],
+        "required": ["id", "observed_outcome", "decisions", "questions", "proposal", "artifacts", "scripted_responses_used", "terminal_condition", "vault_boundary"],
         "properties": {
           "id": { "type": "string" },
           "observed_outcome": { "type": "string" },
@@ -17,7 +17,8 @@
           "questions": { "type": "array", "items": { "type": "string" } },
           "proposal": { "type": "array", "items": { "type": "string" } },
           "artifacts": { "type": "array", "items": { "type": "string" } },
-          "stopped_before_write": { "type": "boolean" },
+          "scripted_responses_used": { "type": "integer", "minimum": 0 },
+          "terminal_condition": { "type": "string" },
           "vault_boundary": { "type": "string", "enum": ["active-vault", "would-leave-vault", "unknown"] }
         }
       }

@@ -29,6 +29,6 @@ npm test
 
 The acceptance scenarios in `tests/acceptance-scenarios.json` cover personal and academic vaults. They describe user-visible outcomes for forward testing without coupling tests to headings or exact prose.
 
-`npm run test:acceptance` runs two ephemeral, read-only Codex evaluations. The first simulates every realistic request without seeing the expected outcomes. The second judges the observed behavior against those outcomes. This command sends the versioned skill text and synthetic fixtures to the configured Codex model service. It never reads a real vault.
+`npm run test:acceptance` runs two ephemeral Codex evaluations. The first follows scripted user replies and writes only to disposable copies of the synthetic vaults. The second reads the resulting file diffs and judges the observed behavior against the expected outcomes. This command sends the versioned skill text and synthetic fixtures to the configured Codex model service. It never reads a real vault.
 
 `npm run test:full` combines syntax, structural, deterministic, and model-evaluated checks.

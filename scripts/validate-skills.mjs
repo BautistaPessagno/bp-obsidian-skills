@@ -70,6 +70,16 @@ async function validateScenarios() {
     if (!scenario.request || !Array.isArray(scenario.expect) || scenario.expect.length === 0) {
       throw new Error(`${scenarioPath}: ${scenario.id} has no observable expectation`);
     }
+    if (!Array.isArray(scenario.scripted_responses)) {
+      throw new Error(`${scenarioPath}: ${scenario.id} has no scripted interaction`);
+    }
+
+    const fixtureName = scenario.fixture ?? scenario.vault;
+    const fixture = path.join(repositoryRoot, "tests", "fixtures", fixtureName);
+    await fs.access(fixture);
+    if (scenario.active_note) {
+      await fs.access(path.join(fixture, scenario.active_note));
+    }
   }
 
   for (const skillName of skillNames) {
@@ -100,6 +110,13 @@ async function validateScenarios() {
     if (!developModes.has(mode)) {
       throw new Error(`${scenarioPath}: develop-note needs a ${mode} scenario`);
     }
+  }
+
+  const understandingScenario = scenarios.find(
+    (scenario) => scenario.skill === "test-understanding",
+  );
+  if (!understandingScenario || understandingScenario.scripted_responses.length < 3) {
+    throw new Error(`${scenarioPath}: test-understanding needs retrieval, transfer, and approval responses`);
   }
 
   return scenarios.length;

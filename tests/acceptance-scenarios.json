@@ -1,0 +1,93 @@
+[
+  {
+    "id": "setup-personal-preserves-taxonomy",
+    "skill": "setup-bp-vault",
+    "vault": "personal",
+    "request": "Configura BP Vault Skills sin cambiar mis carpetas ni propiedades.",
+    "expect": ["present findings before writing", "map the common vocabulary to local objects", "request approval", "write two visible contracts"]
+  },
+  {
+    "id": "setup-academic-updates-owned-block",
+    "skill": "setup-bp-vault",
+    "vault": "academic",
+    "request": "Volvé a ejecutar el setup después de que agregué una materia.",
+    "expect": ["preserve existing conventions", "update managed material without duplicate pointers", "preserve unowned edits"]
+  },
+  {
+    "id": "router-documentation",
+    "skill": "ask-bp",
+    "vault": "personal",
+    "request": "Quiero ordenar y desarrollar este pensamiento, no estudiarlo.",
+    "expect": ["recommend develop-note", "give one-line reason"]
+  },
+  {
+    "id": "router-learning",
+    "skill": "ask-bp",
+    "vault": "academic",
+    "request": "Quiero comprobar si entiendo esta clase.",
+    "expect": ["recommend test-understanding", "give one-line reason"]
+  },
+  {
+    "id": "router-application",
+    "skill": "ask-bp",
+    "vault": "personal",
+    "request": "Quiero llevar esta idea a una acción concreta.",
+    "expect": ["recommend apply-learning", "give one-line reason"]
+  },
+  {
+    "id": "router-review",
+    "skill": "ask-bp",
+    "vault": "personal",
+    "request": "Revisemos el progreso de este mes.",
+    "expect": ["recommend review-progress", "give one-line reason"]
+  },
+  {
+    "id": "develop-thought-without-study",
+    "skill": "develop-note",
+    "vault": "personal",
+    "request": "Desarrollá esta reflexión sin convertirla en una lección.",
+    "expect": ["preserve context and open questions", "separate experience from interpretation", "draft before substantial edits", "avoid learned state"]
+  },
+  {
+    "id": "develop-academic-learning-note",
+    "skill": "develop-note",
+    "vault": "academic",
+    "request": "Desarrollá esta nota de clase para poder aprender el tema.",
+    "expect": ["prioritize course sources", "use the learner's own words", "add meaningful local connections", "avoid universal properties"]
+  },
+  {
+    "id": "retrieval-before-answer",
+    "skill": "test-understanding",
+    "vault": "academic",
+    "request": "Tomame este tema y corregí mis huecos.",
+    "expect": ["ask for retrieval before revealing", "diagnose one concrete gap", "teach only what repairs the gap", "finish with a new transfer case"]
+  },
+  {
+    "id": "small-personal-application",
+    "skill": "apply-learning",
+    "vault": "personal",
+    "request": "Ayudame a aplicar esta idea esta semana.",
+    "expect": ["propose one small application", "include context action success criterion and review moment", "request approval before creating or moving notes"]
+  },
+  {
+    "id": "academic-application",
+    "skill": "apply-learning",
+    "vault": "academic",
+    "request": "Convertí lo aprendido en una práctica verificable.",
+    "expect": ["choose an exercise or unaided explanation from the local profile", "define observable success", "record evidence locally"]
+  },
+  {
+    "id": "monthly-review",
+    "skill": "review-progress",
+    "vault": "personal",
+    "request": "Hacé mi revisión mensual.",
+    "expect": ["load the local time-horizon mode", "evaluate retrieval transfer and application", "treat counts and time as context"]
+  },
+  {
+    "id": "exam-readiness-review",
+    "skill": "review-progress",
+    "vault": "academic",
+    "request": "Revisá si estoy listo para el parcial.",
+    "expect": ["load the practice or evaluation mode", "use academic evidence", "surface gaps and next checks"]
+  }
+]

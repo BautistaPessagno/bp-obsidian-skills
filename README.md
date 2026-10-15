@@ -1,7 +1,7 @@
 # BP Vault Skills
 
 > [!NOTE]
-> **Archived at v0.1.** This repository is no longer maintained. The next version is being rebuilt as vault-local skills inside my Obsidian vault, based on how I actually use it. The `v0.1` tag preserves this release.
+> **Archived at v0.1.** This repository is no longer maintained. The next version is being rebuilt as vault-local skills inside my Obsidian vault, based on how I actually use it. Release v0.1 is commit `f2342c8`.
 
 BP Vault Skills is a portable toolkit for thinking, documenting, learning, applying knowledge, and reviewing progress in Obsidian.
 

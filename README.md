@@ -1,5 +1,8 @@
 # BP Vault Skills
 
+> [!NOTE]
+> **Archived at v0.1.** This repository is no longer maintained. The next version is being rebuilt as vault-local skills inside my Obsidian vault, based on how I actually use it. The `v0.1` tag preserves this release.
+
 BP Vault Skills is a portable toolkit for thinking, documenting, learning, applying knowledge, and reviewing progress in Obsidian.
 
 The skills adapt to each vault instead of imposing one folder structure, property schema, or study method. A personal vault can keep its ideas, projects, and periodic reviews. An academic vault can keep its subjects, classes, practices, and evaluations. Both use the same skills through local contracts that describe what those concepts mean in that vault.
